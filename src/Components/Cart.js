@@ -153,7 +153,7 @@ export default function Cart() {
 		// console.log(token)
 		const cart = {name: 'All Products', reduceOfTotalPriceToPay: reduceOfTotalPriceToPay}
 
-		const response = await axios.post('http://localhost:8080/checkout', {
+		const response = await axios.post('https://t-commerces.herokuapp.com/checkout', {
 			token,
 			cart
 		})
