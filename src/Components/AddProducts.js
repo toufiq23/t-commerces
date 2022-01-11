@@ -6,6 +6,7 @@ function AddProducts() {
 	const [title, setTitle] = useState('')
 	const [description, setDescription] = useState('')
 	const [price, setPrice] = useState('')
+	const [category, setCategory]=useState('');
 	const [image, setImage] = useState(null)
 
 	const [imageError, setImageError] = useState('')
@@ -51,6 +52,7 @@ function AddProducts() {
 				fs.collection('Products').add({
 					title,
 					description,
+					category,
 					price: Number(price),
 					url
 				}).then(() => {
@@ -59,6 +61,8 @@ function AddProducts() {
 					setDescription('')
 					setPrice('')
 					document.getElementById('file').value=''
+					setImageError('');
+					setUploadError('');
 					setTimeout(() => {
 						setSuccessMsg('')
 					}, 3000)
@@ -92,6 +96,24 @@ function AddProducts() {
 				<label>Product Price</label>
 				<br />
 				<input type="number" className="form-control" required onChange={e=> setPrice(e.target.value)} value={price} />
+				<br />
+				<label>Product Category</label>
+					<select 
+						className='form-control' required
+						value={category} 
+						onChange={(e)=>setCategory(e.target.value)}
+					>
+						<option value="">Select Product Category</option>                   
+						<option>Electronic Devices</option>
+						<option>Mobile Accessories</option>
+						<option>TV & Home Appliances</option>
+						<option>Sports & outdoors</option>
+						<option>Health & Beauty</option>
+						<option>Home & Lifestyle</option>
+						<option>Men's Fashion</option>
+						<option>Watches, bags & Jewellery</option>
+						<option>Groceries</option>
+					</select>
 				<br />
 				<label>Upload Product Image</label>
 				<input 
